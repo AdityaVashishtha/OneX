@@ -14,7 +14,7 @@ router.post('/register', (req, res) => {
         username: req.body.username,
         password: req.body.password
     });
-    console.log("request reciveved");
+    console.log("request received");
     User.addUser(newUser, (err, user) => {
         if (err) {
             res.json({
