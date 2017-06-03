@@ -21,9 +21,28 @@ export class AuthService {
     return this.http.post('http://localhost:3010/users/authenticate',user,{headers: headers}).map(res => res.json());
   }
 
+  getProfile() {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization',this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3010/users/profile',{headers: headers}).map(res => res.json());
+  }
+
+  loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
+
   storeUserData(token, user){
     localStorage.setItem('id_token',token);
     localStorage.setItem('user',JSON.stringify(user));
+  }
+
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
   }
 
 

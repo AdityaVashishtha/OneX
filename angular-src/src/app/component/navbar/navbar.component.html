@@ -19,6 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ><a [routerLink]="['/register']">Register</a></li>
         <li class="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ><a [routerLink]="['/login']">Login</a></li>
+        <li class="/" ><a (click)="onClickLogout()" href="#">Logout</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
