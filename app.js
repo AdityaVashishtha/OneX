@@ -12,7 +12,7 @@ mongoose.connect(config.database);
 
 // on connection
 mongoose.connection.on('connected',() => {
-    console.log('Connection established to database:: '+config.database);
+    console.log('Connection established to the database:: '+config.database);
 });
 
 // on Error
