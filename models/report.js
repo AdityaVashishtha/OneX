@@ -34,9 +34,9 @@ const reportSchema = mongoose.Schema({
 
 const Report = module.exports = mongoose.model('Report',reportSchema);
 
-module.exports.showReports = function(user, callback){
-    const query = {author_id: user._id};
-    Report.find(query,callback);
+module.exports.showReports = function(id, callback){
+    const query = {author_id: id};
+    Report.find(query,callback).sort({compiledOn: -1}).limit(10);
 }
 
 module.exports.addReport = function(report, callback){

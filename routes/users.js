@@ -78,8 +78,14 @@ router.post('/authenticate', (req, res) => {
 router.get('/profile', passport.authenticate('jwt', {
     session: false
 }), (req, res, next) => {
-    res.json({
-        user: req.user
+    Report.showReports(req.user._id, (err, reports) => {
+        if(err) throw err;
+        else {
+            res.json({
+                user: req.user,
+                reports: reports
+            });
+        }
     });
 });
 
@@ -147,6 +153,10 @@ router.post('/compile', (req, res, next) => {
             stdOutput = outputFile.output;
             if(isError) {
                 stdOutput = outputFile.stderr;
+            }
+            if(stdOutput.length <= 0) {
+                stdOutput = "Runtime Error:: Time Limit may exceeds.";
+                outputFile.stderr = stdOutput;
             }
             let newReport = new Report({
                 author_id: req.body.user._id,
