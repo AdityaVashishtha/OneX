@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router'
-import { FlashMessagesModule  } from 'angular2-flash-messages'
+import { RouterModule, Routes } from '@angular/router';
+import { FlashMessagesModule  } from 'angular2-flash-messages';
+import { CodemirrorModule } from 'ng2-codemirror';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
+    CodemirrorModule
   ],
   providers: [ ValidateService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]

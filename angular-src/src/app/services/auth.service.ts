@@ -52,5 +52,10 @@ export class AuthService {
     localStorage.clear();
   }
 
+  compileCode(codeFile) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3010/users/compile',codeFile,{headers: headers}).map( res => res.json());
+  }
 
 }
